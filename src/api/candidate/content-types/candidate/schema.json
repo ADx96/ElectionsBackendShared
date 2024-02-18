@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidates",
+  "info": {
+    "singularName": "candidate",
+    "pluralName": "candidates",
+    "displayName": "Candidate",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "text"
+    },
+    "job": {
+      "type": "string"
+    },
+    "civilId": {
+      "type": "biginteger"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "nationalityNumber": {
+      "type": "biginteger"
+    },
+    "scheduleNumber": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "isVoted": {
+      "type": "boolean",
+      "default": false
+    },
+    "totalVoters": {
+      "type": "biginteger"
+    },
+    "mobile": {
+      "type": "integer"
+    },
+    "familyName": {
+      "type": "string"
+    },
+    "voters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::voter.voter"
+    },
+    "sector": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sector.sector"
+    },
+    "city": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::city.city"
+    }
+  }
+}

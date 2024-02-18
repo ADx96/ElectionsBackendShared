@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "voters",
+  "info": {
+    "singularName": "voter",
+    "pluralName": "voters",
+    "displayName": "voter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "text"
+    },
+    "job": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "nationalityNumber": {
+      "type": "biginteger"
+    },
+    "civilId": {
+      "type": "biginteger"
+    },
+    "isVoted": {
+      "type": "boolean",
+      "default": false
+    },
+    "isAllowed": {
+      "type": "boolean",
+      "default": true
+    },
+    "scheduleNumber": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "integer"
+    },
+    "familyName": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "candidate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::candidate.candidate"
+    },
+    "sector": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sector.sector"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::school.school"
+    },
+    "city": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::city.city"
+    }
+  }
+}
