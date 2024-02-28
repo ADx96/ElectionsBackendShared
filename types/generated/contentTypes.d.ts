@@ -802,8 +802,6 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
     nationalityNumber: Attribute.BigInteger;
     scheduleNumber: Attribute.String;
     gender: Attribute.Enumeration<['male', 'female']>;
-    isVoted: Attribute.Boolean & Attribute.DefaultTo<false>;
-    totalVoters: Attribute.BigInteger;
     mobile: Attribute.Integer;
     familyName: Attribute.String;
     voters: Attribute.Relation<
@@ -821,6 +819,7 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
       'oneToOne',
       'api::city.city'
     >;
+    status: Attribute.Enumeration<['Allowed', 'Stopped', 'NotAllowed']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -37,13 +37,6 @@
         "female"
       ]
     },
-    "isVoted": {
-      "type": "boolean",
-      "default": false
-    },
-    "totalVoters": {
-      "type": "biginteger"
-    },
     "mobile": {
       "type": "integer"
     },
@@ -64,6 +57,14 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::city.city"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Allowed",
+        "Stopped",
+        "NotAllowed"
+      ]
     }
   }
 }
