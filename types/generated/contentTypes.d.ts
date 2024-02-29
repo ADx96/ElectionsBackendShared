@@ -819,7 +819,11 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
       'oneToOne',
       'api::city.city'
     >;
-    status: Attribute.Enumeration<['Allowed', 'Stopped', 'NotAllowed']>;
+    tribe: Attribute.Relation<
+      'api::candidate.candidate',
+      'oneToOne',
+      'api::tribe.tribe'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -946,6 +950,11 @@ export interface ApiSectorSector extends Schema.CollectionType {
       'oneToMany',
       'api::voter.voter'
     >;
+    tribes: Attribute.Relation<
+      'api::sector.sector',
+      'oneToMany',
+      'api::tribe.tribe'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -957,6 +966,46 @@ export interface ApiSectorSector extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::sector.sector',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTribeTribe extends Schema.CollectionType {
+  collectionName: 'tribes';
+  info: {
+    singularName: 'tribe';
+    pluralName: 'tribes';
+    displayName: 'Tribe';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    candidates: Attribute.Relation<
+      'api::tribe.tribe',
+      'oneToMany',
+      'api::candidate.candidate'
+    >;
+    voters: Attribute.Relation<
+      'api::tribe.tribe',
+      'oneToMany',
+      'api::voter.voter'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tribe.tribe',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tribe.tribe',
       'oneToOne',
       'admin::user'
     > &
@@ -1003,6 +1052,13 @@ export interface ApiVoterVoter extends Schema.CollectionType {
       'api::school.school'
     >;
     city: Attribute.Relation<'api::voter.voter', 'oneToOne', 'api::city.city'>;
+    status: Attribute.Enumeration<['Allowed', 'Stopped', 'NotAllowed']>;
+    registrationNum: Attribute.BigInteger;
+    tribe: Attribute.Relation<
+      'api::voter.voter',
+      'oneToOne',
+      'api::tribe.tribe'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1043,6 +1099,7 @@ declare module '@strapi/types' {
       'api::city.city': ApiCityCity;
       'api::school.school': ApiSchoolSchool;
       'api::sector.sector': ApiSectorSector;
+      'api::tribe.tribe': ApiTribeTribe;
       'api::voter.voter': ApiVoterVoter;
     }
   }

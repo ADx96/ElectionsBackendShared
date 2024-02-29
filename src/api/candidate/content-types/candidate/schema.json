@@ -58,13 +58,10 @@
       "relation": "oneToOne",
       "target": "api::city.city"
     },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "Allowed",
-        "Stopped",
-        "NotAllowed"
-      ]
+    "tribe": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tribe.tribe"
     }
   }
 }
