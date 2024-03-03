@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "cities",
+  "collectionName": "committees",
   "info": {
-    "singularName": "city",
-    "pluralName": "cities",
-    "displayName": "city",
+    "singularName": "committee",
+    "pluralName": "committees",
+    "displayName": "committee",
     "description": ""
   },
   "options": {
@@ -15,29 +15,29 @@
     "name": {
       "type": "string"
     },
+    "number": {
+      "type": "integer"
+    },
+    "letters": {
+      "type": "text"
+    },
     "candidates": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::candidate.candidate",
-      "mappedBy": "city"
-    },
-    "schools": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::school.school",
-      "mappedBy": "city"
-    },
-    "sector": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::sector.sector",
-      "inversedBy": "cities"
+      "mappedBy": "committee"
     },
     "voters": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::voter.voter",
-      "mappedBy": "city"
+      "mappedBy": "committee"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "committees"
     }
   }
 }

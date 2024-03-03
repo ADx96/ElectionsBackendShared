@@ -15,31 +15,38 @@
     "name": {
       "type": "enumeration",
       "enum": [
-        "الآولى"
+        "الآولى",
+        "الثانية",
+        "الثالثة",
+        "الرابعة",
+        "الخامسة"
       ]
     },
     "number": {
       "type": "integer"
     },
-    "cities": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::city.city"
-    },
-    "candidates": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::candidate.candidate"
-    },
-    "voters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::voter.voter"
-    },
     "tribes": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::tribe.tribe"
+    },
+    "voters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::voter.voter",
+      "mappedBy": "sector"
+    },
+    "cities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::city.city",
+      "mappedBy": "sector"
+    },
+    "candidates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::candidate.candidate",
+      "mappedBy": "sector"
     }
   }
 }

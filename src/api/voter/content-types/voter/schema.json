@@ -51,25 +51,17 @@
         "female"
       ]
     },
-    "candidate": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::candidate.candidate"
-    },
     "sector": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::sector.sector"
+      "relation": "manyToOne",
+      "target": "api::sector.sector",
+      "inversedBy": "voters"
     },
     "school": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::school.school"
-    },
-    "city": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::city.city"
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "voters"
     },
     "status": {
       "type": "enumeration",
@@ -86,6 +78,24 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::tribe.tribe"
+    },
+    "candidate": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidate.candidate",
+      "inversedBy": "voters"
+    },
+    "committee": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::committee.committee",
+      "inversedBy": "voters"
+    },
+    "city": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::city.city",
+      "inversedBy": "voters"
     }
   }
 }

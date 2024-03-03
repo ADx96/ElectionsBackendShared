@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_tribes",
+  "info": {
+    "singularName": "sub-tribe",
+    "pluralName": "sub-tribes",
+    "displayName": "SubTribe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "tribe": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tribe.tribe",
+      "mappedBy": "sub_tribe"
+    }
+  }
+}

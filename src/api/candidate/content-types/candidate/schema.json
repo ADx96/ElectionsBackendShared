@@ -43,25 +43,35 @@
     "familyName": {
       "type": "string"
     },
-    "voters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::voter.voter"
-    },
     "sector": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::sector.sector"
+      "relation": "manyToOne",
+      "target": "api::sector.sector",
+      "inversedBy": "candidates"
     },
     "city": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::city.city"
+      "relation": "manyToOne",
+      "target": "api::city.city",
+      "inversedBy": "candidates"
     },
     "tribe": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::tribe.tribe"
+      "relation": "manyToOne",
+      "target": "api::tribe.tribe",
+      "inversedBy": "candidates"
+    },
+    "voters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::voter.voter",
+      "mappedBy": "candidate"
+    },
+    "committee": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::committee.committee",
+      "inversedBy": "candidates"
     }
   }
 }

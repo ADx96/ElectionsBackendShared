@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tribe",
     "pluralName": "tribes",
-    "displayName": "Tribe"
+    "displayName": "Tribe",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,15 +15,22 @@
     "name": {
       "type": "string"
     },
-    "candidates": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::candidate.candidate"
-    },
     "voters": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::voter.voter"
+    },
+    "sub_tribe": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sub-tribe.sub-tribe",
+      "inversedBy": "tribe"
+    },
+    "candidates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::candidate.candidate",
+      "mappedBy": "tribe"
     }
   }
 }

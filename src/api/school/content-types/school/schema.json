@@ -15,9 +15,6 @@
     "name": {
       "type": "string"
     },
-    "number": {
-      "type": "integer"
-    },
     "gender": {
       "type": "enumeration",
       "enum": [
@@ -25,29 +22,31 @@
         "female"
       ]
     },
-    "voters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::voter.voter"
-    },
     "location": {
       "type": "string"
     },
     "city": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::city.city"
+      "relation": "manyToOne",
+      "target": "api::city.city",
+      "inversedBy": "schools"
     },
     "candidates": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::candidate.candidate"
     },
-    "litter": {
-      "type": "string"
+    "voters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::voter.voter",
+      "mappedBy": "school"
     },
-    "isMain": {
-      "type": "boolean"
+    "committees": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::committee.committee",
+      "mappedBy": "school"
     }
   }
 }

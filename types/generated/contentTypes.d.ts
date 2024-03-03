@@ -804,25 +804,30 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
     gender: Attribute.Enumeration<['male', 'female']>;
     mobile: Attribute.Integer;
     familyName: Attribute.String;
+    sector: Attribute.Relation<
+      'api::candidate.candidate',
+      'manyToOne',
+      'api::sector.sector'
+    >;
+    city: Attribute.Relation<
+      'api::candidate.candidate',
+      'manyToOne',
+      'api::city.city'
+    >;
+    tribe: Attribute.Relation<
+      'api::candidate.candidate',
+      'manyToOne',
+      'api::tribe.tribe'
+    >;
     voters: Attribute.Relation<
       'api::candidate.candidate',
       'oneToMany',
       'api::voter.voter'
     >;
-    sector: Attribute.Relation<
+    committee: Attribute.Relation<
       'api::candidate.candidate',
-      'oneToOne',
-      'api::sector.sector'
-    >;
-    city: Attribute.Relation<
-      'api::candidate.candidate',
-      'oneToOne',
-      'api::city.city'
-    >;
-    tribe: Attribute.Relation<
-      'api::candidate.candidate',
-      'oneToOne',
-      'api::tribe.tribe'
+      'manyToOne',
+      'api::committee.committee'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -855,10 +860,25 @@ export interface ApiCityCity extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
+    candidates: Attribute.Relation<
+      'api::city.city',
+      'oneToMany',
+      'api::candidate.candidate'
+    >;
     schools: Attribute.Relation<
       'api::city.city',
       'oneToMany',
       'api::school.school'
+    >;
+    sector: Attribute.Relation<
+      'api::city.city',
+      'manyToOne',
+      'api::sector.sector'
+    >;
+    voters: Attribute.Relation<
+      'api::city.city',
+      'oneToMany',
+      'api::voter.voter'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -866,6 +886,54 @@ export interface ApiCityCity extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCommitteeCommittee extends Schema.CollectionType {
+  collectionName: 'committees';
+  info: {
+    singularName: 'committee';
+    pluralName: 'committees';
+    displayName: 'committee';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    number: Attribute.Integer;
+    letters: Attribute.Text;
+    candidates: Attribute.Relation<
+      'api::committee.committee',
+      'oneToMany',
+      'api::candidate.candidate'
+    >;
+    voters: Attribute.Relation<
+      'api::committee.committee',
+      'oneToMany',
+      'api::voter.voter'
+    >;
+    school: Attribute.Relation<
+      'api::committee.committee',
+      'manyToOne',
+      'api::school.school'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::committee.committee',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::committee.committee',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -883,17 +951,11 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    number: Attribute.Integer;
     gender: Attribute.Enumeration<['male', 'female']>;
-    voters: Attribute.Relation<
-      'api::school.school',
-      'oneToMany',
-      'api::voter.voter'
-    >;
     location: Attribute.String;
     city: Attribute.Relation<
       'api::school.school',
-      'oneToOne',
+      'manyToOne',
       'api::city.city'
     >;
     candidates: Attribute.Relation<
@@ -901,8 +963,16 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       'oneToMany',
       'api::candidate.candidate'
     >;
-    litter: Attribute.String;
-    isMain: Attribute.Boolean;
+    voters: Attribute.Relation<
+      'api::school.school',
+      'oneToMany',
+      'api::voter.voter'
+    >;
+    committees: Attribute.Relation<
+      'api::school.school',
+      'oneToMany',
+      'api::committee.committee'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -933,8 +1003,26 @@ export interface ApiSectorSector extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.Enumeration<['\u0627\u0644\u0622\u0648\u0644\u0649']>;
+    name: Attribute.Enumeration<
+      [
+        '\u0627\u0644\u0622\u0648\u0644\u0649',
+        '\u0627\u0644\u062B\u0627\u0646\u064A\u0629',
+        '\u0627\u0644\u062B\u0627\u0644\u062B\u0629',
+        '\u0627\u0644\u0631\u0627\u0628\u0639\u0629',
+        '\u0627\u0644\u062E\u0627\u0645\u0633\u0629'
+      ]
+    >;
     number: Attribute.Integer;
+    tribes: Attribute.Relation<
+      'api::sector.sector',
+      'oneToMany',
+      'api::tribe.tribe'
+    >;
+    voters: Attribute.Relation<
+      'api::sector.sector',
+      'oneToMany',
+      'api::voter.voter'
+    >;
     cities: Attribute.Relation<
       'api::sector.sector',
       'oneToMany',
@@ -944,16 +1032,6 @@ export interface ApiSectorSector extends Schema.CollectionType {
       'api::sector.sector',
       'oneToMany',
       'api::candidate.candidate'
-    >;
-    voters: Attribute.Relation<
-      'api::sector.sector',
-      'oneToMany',
-      'api::voter.voter'
-    >;
-    tribes: Attribute.Relation<
-      'api::sector.sector',
-      'oneToMany',
-      'api::tribe.tribe'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -973,27 +1051,69 @@ export interface ApiSectorSector extends Schema.CollectionType {
   };
 }
 
-export interface ApiTribeTribe extends Schema.CollectionType {
-  collectionName: 'tribes';
+export interface ApiSubTribeSubTribe extends Schema.CollectionType {
+  collectionName: 'sub_tribes';
   info: {
-    singularName: 'tribe';
-    pluralName: 'tribes';
-    displayName: 'Tribe';
+    singularName: 'sub-tribe';
+    pluralName: 'sub-tribes';
+    displayName: 'SubTribe';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: Attribute.String;
-    candidates: Attribute.Relation<
-      'api::tribe.tribe',
-      'oneToMany',
-      'api::candidate.candidate'
+    tribe: Attribute.Relation<
+      'api::sub-tribe.sub-tribe',
+      'oneToOne',
+      'api::tribe.tribe'
     >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sub-tribe.sub-tribe',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sub-tribe.sub-tribe',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTribeTribe extends Schema.CollectionType {
+  collectionName: 'tribes';
+  info: {
+    singularName: 'tribe';
+    pluralName: 'tribes';
+    displayName: 'Tribe';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
     voters: Attribute.Relation<
       'api::tribe.tribe',
       'oneToMany',
       'api::voter.voter'
+    >;
+    sub_tribe: Attribute.Relation<
+      'api::tribe.tribe',
+      'oneToOne',
+      'api::sub-tribe.sub-tribe'
+    >;
+    candidates: Attribute.Relation<
+      'api::tribe.tribe',
+      'oneToMany',
+      'api::candidate.candidate'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1036,22 +1156,16 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     mobile: Attribute.Integer;
     familyName: Attribute.String;
     gender: Attribute.Enumeration<['male', 'female']>;
-    candidate: Attribute.Relation<
-      'api::voter.voter',
-      'oneToOne',
-      'api::candidate.candidate'
-    >;
     sector: Attribute.Relation<
       'api::voter.voter',
-      'oneToOne',
+      'manyToOne',
       'api::sector.sector'
     >;
     school: Attribute.Relation<
       'api::voter.voter',
-      'oneToOne',
+      'manyToOne',
       'api::school.school'
     >;
-    city: Attribute.Relation<'api::voter.voter', 'oneToOne', 'api::city.city'>;
     status: Attribute.Enumeration<['Allowed', 'Stopped', 'NotAllowed']>;
     registrationNum: Attribute.BigInteger;
     tribe: Attribute.Relation<
@@ -1059,6 +1173,17 @@ export interface ApiVoterVoter extends Schema.CollectionType {
       'oneToOne',
       'api::tribe.tribe'
     >;
+    candidate: Attribute.Relation<
+      'api::voter.voter',
+      'manyToOne',
+      'api::candidate.candidate'
+    >;
+    committee: Attribute.Relation<
+      'api::voter.voter',
+      'manyToOne',
+      'api::committee.committee'
+    >;
+    city: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::city.city'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1097,8 +1222,10 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::candidate.candidate': ApiCandidateCandidate;
       'api::city.city': ApiCityCity;
+      'api::committee.committee': ApiCommitteeCommittee;
       'api::school.school': ApiSchoolSchool;
       'api::sector.sector': ApiSectorSector;
+      'api::sub-tribe.sub-tribe': ApiSubTribeSubTribe;
       'api::tribe.tribe': ApiTribeTribe;
       'api::voter.voter': ApiVoterVoter;
     }
