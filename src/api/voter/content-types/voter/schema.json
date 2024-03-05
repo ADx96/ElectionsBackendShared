@@ -15,16 +15,7 @@
     "name": {
       "type": "text"
     },
-    "job": {
-      "type": "string"
-    },
-    "age": {
-      "type": "integer"
-    },
     "nationalityNumber": {
-      "type": "biginteger"
-    },
-    "civilId": {
       "type": "biginteger"
     },
     "isVoted": {
@@ -96,6 +87,21 @@
       "relation": "manyToOne",
       "target": "api::city.city",
       "inversedBy": "voters"
+    },
+    "name1": {
+      "type": "string"
+    },
+    "name2": {
+      "type": "string"
+    },
+    "name3": {
+      "type": "string"
+    },
+    "name4": {
+      "type": "string"
+    },
+    "letters": {
+      "type": "string"
     }
   }
 }

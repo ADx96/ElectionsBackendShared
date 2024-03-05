@@ -798,7 +798,6 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
     name: Attribute.Text;
     job: Attribute.String;
     civilId: Attribute.BigInteger;
-    age: Attribute.Integer;
     nationalityNumber: Attribute.BigInteger;
     scheduleNumber: Attribute.String;
     gender: Attribute.Enumeration<['male', 'female']>;
@@ -829,6 +828,10 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
       'manyToOne',
       'api::committee.committee'
     >;
+    name1: Attribute.String;
+    name2: Attribute.String;
+    name3: Attribute.String;
+    name4: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1146,10 +1149,7 @@ export interface ApiVoterVoter extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.Text;
-    job: Attribute.String;
-    age: Attribute.Integer;
     nationalityNumber: Attribute.BigInteger;
-    civilId: Attribute.BigInteger;
     isVoted: Attribute.Boolean & Attribute.DefaultTo<false>;
     isAllowed: Attribute.Boolean & Attribute.DefaultTo<true>;
     scheduleNumber: Attribute.String;
@@ -1184,6 +1184,11 @@ export interface ApiVoterVoter extends Schema.CollectionType {
       'api::committee.committee'
     >;
     city: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::city.city'>;
+    name1: Attribute.String;
+    name2: Attribute.String;
+    name3: Attribute.String;
+    name4: Attribute.String;
+    letters: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

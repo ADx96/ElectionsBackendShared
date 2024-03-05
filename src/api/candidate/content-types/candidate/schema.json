@@ -21,9 +21,6 @@
     "civilId": {
       "type": "biginteger"
     },
-    "age": {
-      "type": "integer"
-    },
     "nationalityNumber": {
       "type": "biginteger"
     },
@@ -72,6 +69,18 @@
       "relation": "manyToOne",
       "target": "api::committee.committee",
       "inversedBy": "candidates"
+    },
+    "name1": {
+      "type": "string"
+    },
+    "name2": {
+      "type": "string"
+    },
+    "name3": {
+      "type": "string"
+    },
+    "name4": {
+      "type": "string"
     }
   }
 }
