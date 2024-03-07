@@ -1103,11 +1103,6 @@ export interface ApiTribeTribe extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    voters: Attribute.Relation<
-      'api::tribe.tribe',
-      'oneToMany',
-      'api::voter.voter'
-    >;
     sub_tribe: Attribute.Relation<
       'api::tribe.tribe',
       'oneToOne',
@@ -1117,6 +1112,11 @@ export interface ApiTribeTribe extends Schema.CollectionType {
       'api::tribe.tribe',
       'oneToMany',
       'api::candidate.candidate'
+    >;
+    voters: Attribute.Relation<
+      'api::tribe.tribe',
+      'oneToMany',
+      'api::voter.voter'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1170,7 +1170,7 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     registrationNum: Attribute.BigInteger;
     tribe: Attribute.Relation<
       'api::voter.voter',
-      'oneToOne',
+      'manyToOne',
       'api::tribe.tribe'
     >;
     candidate: Attribute.Relation<

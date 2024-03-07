@@ -15,11 +15,6 @@
     "name": {
       "type": "string"
     },
-    "voters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::voter.voter"
-    },
     "sub_tribe": {
       "type": "relation",
       "relation": "oneToOne",
@@ -30,6 +25,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::candidate.candidate",
+      "mappedBy": "tribe"
+    },
+    "voters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::voter.voter",
       "mappedBy": "tribe"
     }
   }
