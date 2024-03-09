@@ -783,6 +783,47 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAddressAddress extends Schema.CollectionType {
+  collectionName: 'addresses';
+  info: {
+    singularName: 'address';
+    pluralName: 'addresses';
+    displayName: 'Address';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    street: Attribute.String;
+    block: Attribute.String;
+    voters: Attribute.Relation<
+      'api::address.address',
+      'oneToMany',
+      'api::voter.voter'
+    >;
+    city: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'api::city.city'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCandidateCandidate extends Schema.CollectionType {
   collectionName: 'candidates';
   info: {
@@ -882,6 +923,11 @@ export interface ApiCityCity extends Schema.CollectionType {
       'api::city.city',
       'oneToMany',
       'api::voter.voter'
+    >;
+    address: Attribute.Relation<
+      'api::city.city',
+      'oneToOne',
+      'api::address.address'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1189,6 +1235,11 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     name3: Attribute.String;
     name4: Attribute.String;
     letters: Attribute.String;
+    address: Attribute.Relation<
+      'api::voter.voter',
+      'manyToOne',
+      'api::address.address'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1225,6 +1276,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::address.address': ApiAddressAddress;
       'api::candidate.candidate': ApiCandidateCandidate;
       'api::city.city': ApiCityCity;
       'api::committee.committee': ApiCommitteeCommittee;

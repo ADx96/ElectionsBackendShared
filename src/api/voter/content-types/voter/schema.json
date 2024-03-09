@@ -103,6 +103,12 @@
     },
     "letters": {
       "type": "string"
+    },
+    "address": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::address.address",
+      "inversedBy": "voters"
     }
   }
 }
