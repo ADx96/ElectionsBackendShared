@@ -15,12 +15,6 @@
     "name": {
       "type": "string"
     },
-    "number": {
-      "type": "integer"
-    },
-    "letters": {
-      "type": "text"
-    },
     "candidates": {
       "type": "relation",
       "relation": "oneToMany",
@@ -32,6 +26,22 @@
       "relation": "oneToMany",
       "target": "api::voter.voter",
       "mappedBy": "committee"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "main",
+        "sub"
+      ]
+    },
+    "number": {
+      "type": "integer"
+    },
+    "city": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::city.city",
+      "inversedBy": "committees"
     },
     "school": {
       "type": "relation",

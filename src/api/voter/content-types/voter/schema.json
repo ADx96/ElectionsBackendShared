@@ -109,6 +109,10 @@
       "relation": "manyToOne",
       "target": "api::address.address",
       "inversedBy": "voters"
+    },
+    "isGuaranteed": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

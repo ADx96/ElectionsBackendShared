@@ -21,12 +21,6 @@
       "target": "api::candidate.candidate",
       "mappedBy": "city"
     },
-    "schools": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::school.school",
-      "mappedBy": "city"
-    },
     "sector": {
       "type": "relation",
       "relation": "manyToOne",
@@ -43,6 +37,18 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::address.address",
+      "mappedBy": "city"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "cities"
+    },
+    "committees": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::committee.committee",
       "mappedBy": "city"
     }
   }

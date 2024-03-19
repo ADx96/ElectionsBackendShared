@@ -15,26 +15,11 @@
     "name": {
       "type": "string"
     },
-    "gender": {
-      "type": "enumeration",
-      "enum": [
-        "male",
-        "female"
-      ]
-    },
-    "location": {
-      "type": "string"
-    },
-    "city": {
+    "candidate": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::city.city",
+      "target": "api::candidate.candidate",
       "inversedBy": "schools"
-    },
-    "candidates": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::candidate.candidate"
     },
     "voters": {
       "type": "relation",
@@ -42,11 +27,36 @@
       "target": "api::voter.voter",
       "mappedBy": "school"
     },
+    "letters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::letter.letter",
+      "mappedBy": "school"
+    },
+    "cities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::city.city",
+      "mappedBy": "school"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
     "committees": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::committee.committee",
       "mappedBy": "school"
+    },
+    "sector": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sector.sector",
+      "inversedBy": "schools"
     }
   }
 }
