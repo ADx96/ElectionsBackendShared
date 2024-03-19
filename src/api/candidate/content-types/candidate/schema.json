@@ -87,6 +87,10 @@
       "relation": "oneToMany",
       "target": "api::school.school",
       "mappedBy": "candidate"
+    },
+    "registrationNum": {
+      "type": "biginteger",
+      "unique": true
     }
   }
 }

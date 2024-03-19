@@ -63,7 +63,8 @@
       ]
     },
     "registrationNum": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "unique": true
     },
     "tribe": {
       "type": "relation",

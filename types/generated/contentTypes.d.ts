@@ -878,6 +878,7 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
       'oneToMany',
       'api::school.school'
     >;
+    registrationNum: Attribute.BigInteger & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1278,7 +1279,7 @@ export interface ApiVoterVoter extends Schema.CollectionType {
       'api::school.school'
     >;
     status: Attribute.Enumeration<['Allowed', 'Stopped', 'NotAllowed']>;
-    registrationNum: Attribute.BigInteger;
+    registrationNum: Attribute.BigInteger & Attribute.Unique;
     tribe: Attribute.Relation<
       'api::voter.voter',
       'manyToOne',
