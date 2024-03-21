@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -58,12 +58,6 @@
       "target": "api::tribe.tribe",
       "inversedBy": "candidates"
     },
-    "voters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::voter.voter",
-      "mappedBy": "candidate"
-    },
     "committee": {
       "type": "relation",
       "relation": "manyToOne",
@@ -91,6 +85,12 @@
     "registrationNum": {
       "type": "biginteger",
       "unique": true
+    },
+    "voters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::voter.voter",
+      "mappedBy": "candidate"
     }
   }
 }

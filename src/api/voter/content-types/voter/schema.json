@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -72,12 +72,6 @@
       "target": "api::tribe.tribe",
       "inversedBy": "voters"
     },
-    "candidate": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::candidate.candidate",
-      "inversedBy": "voters"
-    },
     "committee": {
       "type": "relation",
       "relation": "manyToOne",
@@ -114,6 +108,19 @@
     "isGuaranteed": {
       "type": "boolean",
       "default": false
+    },
+    "age": {
+      "type": "string"
+    },
+    "candidate": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidate.candidate",
+      "inversedBy": "voters"
+    },
+    "guaranteedCandidateId": {
+      "type": "integer",
+      "unique": true
     }
   }
 }

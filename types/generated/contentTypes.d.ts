@@ -789,9 +789,10 @@ export interface ApiAddressAddress extends Schema.CollectionType {
     singularName: 'address';
     pluralName: 'addresses';
     displayName: 'Address';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     street: Attribute.String;
@@ -808,7 +809,6 @@ export interface ApiAddressAddress extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::address.address',
       'oneToOne',
@@ -833,7 +833,7 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.Text;
@@ -859,11 +859,6 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
       'manyToOne',
       'api::tribe.tribe'
     >;
-    voters: Attribute.Relation<
-      'api::candidate.candidate',
-      'oneToMany',
-      'api::voter.voter'
-    >;
     committee: Attribute.Relation<
       'api::candidate.candidate',
       'manyToOne',
@@ -879,9 +874,13 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
       'api::school.school'
     >;
     registrationNum: Attribute.BigInteger & Attribute.Unique;
+    voters: Attribute.Relation<
+      'api::candidate.candidate',
+      'oneToMany',
+      'api::voter.voter'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::candidate.candidate',
       'oneToOne',
@@ -906,7 +905,7 @@ export interface ApiCityCity extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -942,7 +941,6 @@ export interface ApiCityCity extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
@@ -959,7 +957,7 @@ export interface ApiCommitteeCommittee extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -987,7 +985,6 @@ export interface ApiCommitteeCommittee extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::committee.committee',
       'oneToOne',
@@ -1012,7 +1009,7 @@ export interface ApiLetterLetter extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -1023,7 +1020,6 @@ export interface ApiLetterLetter extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::letter.letter',
       'oneToOne',
@@ -1048,7 +1044,7 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -1085,7 +1081,6 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::school.school',
       'oneToOne',
@@ -1110,7 +1105,7 @@ export interface ApiSectorSector extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.Enumeration<
@@ -1150,7 +1145,6 @@ export interface ApiSectorSector extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::sector.sector',
       'oneToOne',
@@ -1175,7 +1169,7 @@ export interface ApiSubTribeSubTribe extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -1186,7 +1180,6 @@ export interface ApiSubTribeSubTribe extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::sub-tribe.sub-tribe',
       'oneToOne',
@@ -1211,7 +1204,7 @@ export interface ApiTribeTribe extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -1232,7 +1225,6 @@ export interface ApiTribeTribe extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::tribe.tribe',
       'oneToOne',
@@ -1257,7 +1249,7 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.Text;
@@ -1285,11 +1277,6 @@ export interface ApiVoterVoter extends Schema.CollectionType {
       'manyToOne',
       'api::tribe.tribe'
     >;
-    candidate: Attribute.Relation<
-      'api::voter.voter',
-      'manyToOne',
-      'api::candidate.candidate'
-    >;
     committee: Attribute.Relation<
       'api::voter.voter',
       'manyToOne',
@@ -1307,9 +1294,15 @@ export interface ApiVoterVoter extends Schema.CollectionType {
       'api::address.address'
     >;
     isGuaranteed: Attribute.Boolean & Attribute.DefaultTo<false>;
+    age: Attribute.String;
+    candidate: Attribute.Relation<
+      'api::voter.voter',
+      'manyToOne',
+      'api::candidate.candidate'
+    >;
+    guaranteedCandidateId: Attribute.Integer & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::voter.voter',
       'oneToOne',
