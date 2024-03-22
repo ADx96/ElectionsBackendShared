@@ -33,17 +33,9 @@ export interface AdminPermission extends Schema.CollectionType {
     role: Attribute.Relation<'admin::permission', 'manyToOne', 'admin::role'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -89,19 +81,14 @@ export interface AdminUser extends Schema.CollectionType {
       }>;
     resetPasswordToken: Attribute.String & Attribute.Private;
     registrationToken: Attribute.String & Attribute.Private;
-    isActive: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
-    roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> &
-      Attribute.Private;
+    isActive: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
+    roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> & Attribute.Private;
     blocked: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     preferedLanguage: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -137,17 +124,11 @@ export interface AdminRole extends Schema.CollectionType {
       }>;
     description: Attribute.String;
     users: Attribute.Relation<'admin::role', 'manyToMany', 'admin::user'>;
-    permissions: Attribute.Relation<
-      'admin::role',
-      'oneToMany',
-      'admin::permission'
-    >;
+    permissions: Attribute.Relation<'admin::role', 'oneToMany', 'admin::permission'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -189,26 +170,14 @@ export interface AdminApiToken extends Schema.CollectionType {
         minLength: 1;
       }>;
     lastUsedAt: Attribute.DateTime;
-    permissions: Attribute.Relation<
-      'admin::api-token',
-      'oneToMany',
-      'admin::api-token-permission'
-    >;
+    permissions: Attribute.Relation<'admin::api-token', 'oneToMany', 'admin::api-token-permission'>;
     expiresAt: Attribute.DateTime;
     lifespan: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::api-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::api-token', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::api-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::api-token', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -236,24 +205,12 @@ export interface AdminApiTokenPermission extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
-    token: Attribute.Relation<
-      'admin::api-token-permission',
-      'manyToOne',
-      'admin::api-token'
-    >;
+    token: Attribute.Relation<'admin::api-token-permission', 'manyToOne', 'admin::api-token'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::api-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::api-token-permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::api-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::api-token-permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -302,17 +259,9 @@ export interface AdminTransferToken extends Schema.CollectionType {
     lifespan: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::transfer-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::transfer-token', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::transfer-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::transfer-token', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -347,17 +296,9 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::transfer-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::transfer-token-permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::transfer-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::transfer-token-permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -394,11 +335,7 @@ export interface PluginUploadFile extends Schema.CollectionType {
     provider: Attribute.String & Attribute.Required;
     provider_metadata: Attribute.JSON;
     related: Attribute.Relation<'plugin::upload.file', 'morphToMany'>;
-    folder: Attribute.Relation<
-      'plugin::upload.file',
-      'manyToOne',
-      'plugin::upload.folder'
-    > &
+    folder: Attribute.Relation<'plugin::upload.file', 'manyToOne', 'plugin::upload.folder'> &
       Attribute.Private;
     folderPath: Attribute.String &
       Attribute.Required &
@@ -411,17 +348,9 @@ export interface PluginUploadFile extends Schema.CollectionType {
       >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::upload.file',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::upload.file', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::upload.file',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::upload.file', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -451,21 +380,9 @@ export interface PluginUploadFolder extends Schema.CollectionType {
         number
       >;
     pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    parent: Attribute.Relation<
-      'plugin::upload.folder',
-      'manyToOne',
-      'plugin::upload.folder'
-    >;
-    children: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.folder'
-    >;
-    files: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.file'
-    >;
+    parent: Attribute.Relation<'plugin::upload.folder', 'manyToOne', 'plugin::upload.folder'>;
+    children: Attribute.Relation<'plugin::upload.folder', 'oneToMany', 'plugin::upload.folder'>;
+    files: Attribute.Relation<'plugin::upload.folder', 'oneToMany', 'plugin::upload.file'>;
     path: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -476,17 +393,9 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::upload.folder', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::upload.folder', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -521,23 +430,14 @@ export interface PluginContentReleasesRelease extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::content-releases.release', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::content-releases.release', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface PluginContentReleasesReleaseAction
-  extends Schema.CollectionType {
+export interface PluginContentReleasesReleaseAction extends Schema.CollectionType {
   collectionName: 'strapi_release_actions';
   info: {
     singularName: 'release-action';
@@ -557,10 +457,7 @@ export interface PluginContentReleasesReleaseAction
   };
   attributes: {
     type: Attribute.Enumeration<['publish', 'unpublish']> & Attribute.Required;
-    entry: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'morphToOne'
-    >;
+    entry: Attribute.Relation<'plugin::content-releases.release-action', 'morphToOne'>;
     contentType: Attribute.String & Attribute.Required;
     locale: Attribute.String;
     release: Attribute.Relation<
@@ -617,23 +514,14 @@ export interface PluginI18NLocale extends Schema.CollectionType {
     code: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::i18n.locale', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::i18n.locale', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface PluginUsersPermissionsPermission
-  extends Schema.CollectionType {
+export interface PluginUsersPermissionsPermission extends Schema.CollectionType {
   collectionName: 'up_permissions';
   info: {
     name: 'permission';
@@ -711,17 +599,9 @@ export interface PluginUsersPermissionsRole extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::users-permissions.role', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::users-permissions.role', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -768,17 +648,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::users-permissions.user', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::users-permissions.user', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -797,29 +669,13 @@ export interface ApiAddressAddress extends Schema.CollectionType {
   attributes: {
     street: Attribute.String;
     block: Attribute.String;
-    voters: Attribute.Relation<
-      'api::address.address',
-      'oneToMany',
-      'api::voter.voter'
-    >;
-    city: Attribute.Relation<
-      'api::address.address',
-      'oneToOne',
-      'api::city.city'
-    >;
+    voters: Attribute.Relation<'api::address.address', 'oneToMany', 'api::voter.voter'>;
+    city: Attribute.Relation<'api::address.address', 'oneToOne', 'api::city.city'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::address.address',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::address.address', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::address.address',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::address.address', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -844,21 +700,9 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
     gender: Attribute.Enumeration<['male', 'female']>;
     mobile: Attribute.Integer;
     familyName: Attribute.String;
-    sector: Attribute.Relation<
-      'api::candidate.candidate',
-      'manyToOne',
-      'api::sector.sector'
-    >;
-    city: Attribute.Relation<
-      'api::candidate.candidate',
-      'manyToOne',
-      'api::city.city'
-    >;
-    tribe: Attribute.Relation<
-      'api::candidate.candidate',
-      'manyToOne',
-      'api::tribe.tribe'
-    >;
+    sector: Attribute.Relation<'api::candidate.candidate', 'manyToOne', 'api::sector.sector'>;
+    city: Attribute.Relation<'api::candidate.candidate', 'manyToOne', 'api::city.city'>;
+    tribe: Attribute.Relation<'api::candidate.candidate', 'manyToOne', 'api::tribe.tribe'>;
     committee: Attribute.Relation<
       'api::candidate.candidate',
       'manyToOne',
@@ -868,30 +712,14 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
     name2: Attribute.String;
     name3: Attribute.String;
     name4: Attribute.String;
-    schools: Attribute.Relation<
-      'api::candidate.candidate',
-      'oneToMany',
-      'api::school.school'
-    >;
+    schools: Attribute.Relation<'api::candidate.candidate', 'oneToMany', 'api::school.school'>;
     registrationNum: Attribute.BigInteger & Attribute.Unique;
-    voters: Attribute.Relation<
-      'api::candidate.candidate',
-      'oneToMany',
-      'api::voter.voter'
-    >;
+    voters: Attribute.Relation<'api::candidate.candidate', 'oneToMany', 'api::voter.voter'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::candidate.candidate',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::candidate.candidate', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::candidate.candidate',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::candidate.candidate', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -909,42 +737,16 @@ export interface ApiCityCity extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    candidates: Attribute.Relation<
-      'api::city.city',
-      'oneToMany',
-      'api::candidate.candidate'
-    >;
-    sector: Attribute.Relation<
-      'api::city.city',
-      'manyToOne',
-      'api::sector.sector'
-    >;
-    voters: Attribute.Relation<
-      'api::city.city',
-      'oneToMany',
-      'api::voter.voter'
-    >;
-    address: Attribute.Relation<
-      'api::city.city',
-      'oneToOne',
-      'api::address.address'
-    >;
-    school: Attribute.Relation<
-      'api::city.city',
-      'manyToOne',
-      'api::school.school'
-    >;
-    committees: Attribute.Relation<
-      'api::city.city',
-      'oneToMany',
-      'api::committee.committee'
-    >;
+    candidates: Attribute.Relation<'api::city.city', 'oneToMany', 'api::candidate.candidate'>;
+    sector: Attribute.Relation<'api::city.city', 'manyToOne', 'api::sector.sector'>;
+    voters: Attribute.Relation<'api::city.city', 'oneToMany', 'api::voter.voter'>;
+    address: Attribute.Relation<'api::city.city', 'oneToOne', 'api::address.address'>;
+    school: Attribute.Relation<'api::city.city', 'manyToOne', 'api::school.school'>;
+    committees: Attribute.Relation<'api::city.city', 'oneToMany', 'api::committee.committee'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -966,36 +768,16 @@ export interface ApiCommitteeCommittee extends Schema.CollectionType {
       'oneToMany',
       'api::candidate.candidate'
     >;
-    voters: Attribute.Relation<
-      'api::committee.committee',
-      'oneToMany',
-      'api::voter.voter'
-    >;
+    voters: Attribute.Relation<'api::committee.committee', 'oneToMany', 'api::voter.voter'>;
     type: Attribute.Enumeration<['main', 'sub']>;
     number: Attribute.Integer;
-    city: Attribute.Relation<
-      'api::committee.committee',
-      'manyToOne',
-      'api::city.city'
-    >;
-    school: Attribute.Relation<
-      'api::committee.committee',
-      'manyToOne',
-      'api::school.school'
-    >;
+    city: Attribute.Relation<'api::committee.committee', 'manyToOne', 'api::city.city'>;
+    school: Attribute.Relation<'api::committee.committee', 'manyToOne', 'api::school.school'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::committee.committee',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::committee.committee', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::committee.committee',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::committee.committee', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1013,24 +795,12 @@ export interface ApiLetterLetter extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    school: Attribute.Relation<
-      'api::letter.letter',
-      'manyToOne',
-      'api::school.school'
-    >;
+    school: Attribute.Relation<'api::letter.letter', 'manyToOne', 'api::school.school'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::letter.letter',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::letter.letter', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::letter.letter',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::letter.letter', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1048,50 +818,18 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    candidate: Attribute.Relation<
-      'api::school.school',
-      'manyToOne',
-      'api::candidate.candidate'
-    >;
-    voters: Attribute.Relation<
-      'api::school.school',
-      'oneToMany',
-      'api::voter.voter'
-    >;
-    letters: Attribute.Relation<
-      'api::school.school',
-      'oneToMany',
-      'api::letter.letter'
-    >;
-    cities: Attribute.Relation<
-      'api::school.school',
-      'oneToMany',
-      'api::city.city'
-    >;
+    candidate: Attribute.Relation<'api::school.school', 'manyToOne', 'api::candidate.candidate'>;
+    voters: Attribute.Relation<'api::school.school', 'oneToMany', 'api::voter.voter'>;
+    letters: Attribute.Relation<'api::school.school', 'oneToMany', 'api::letter.letter'>;
+    cities: Attribute.Relation<'api::school.school', 'oneToMany', 'api::city.city'>;
     gender: Attribute.Enumeration<['male', 'female']>;
-    committees: Attribute.Relation<
-      'api::school.school',
-      'oneToMany',
-      'api::committee.committee'
-    >;
-    sector: Attribute.Relation<
-      'api::school.school',
-      'manyToOne',
-      'api::sector.sector'
-    >;
+    committees: Attribute.Relation<'api::school.school', 'oneToMany', 'api::committee.committee'>;
+    sector: Attribute.Relation<'api::school.school', 'manyToOne', 'api::sector.sector'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::school.school',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::school.school', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::school.school',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::school.school', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1118,44 +856,16 @@ export interface ApiSectorSector extends Schema.CollectionType {
       ]
     >;
     number: Attribute.Integer;
-    tribes: Attribute.Relation<
-      'api::sector.sector',
-      'oneToMany',
-      'api::tribe.tribe'
-    >;
-    voters: Attribute.Relation<
-      'api::sector.sector',
-      'oneToMany',
-      'api::voter.voter'
-    >;
-    cities: Attribute.Relation<
-      'api::sector.sector',
-      'oneToMany',
-      'api::city.city'
-    >;
-    candidates: Attribute.Relation<
-      'api::sector.sector',
-      'oneToMany',
-      'api::candidate.candidate'
-    >;
-    schools: Attribute.Relation<
-      'api::sector.sector',
-      'oneToMany',
-      'api::school.school'
-    >;
+    tribes: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::tribe.tribe'>;
+    voters: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::voter.voter'>;
+    cities: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::city.city'>;
+    candidates: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::candidate.candidate'>;
+    schools: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::school.school'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::sector.sector',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::sector.sector', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::sector.sector',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::sector.sector', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1173,24 +883,12 @@ export interface ApiSubTribeSubTribe extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    tribe: Attribute.Relation<
-      'api::sub-tribe.sub-tribe',
-      'oneToOne',
-      'api::tribe.tribe'
-    >;
+    tribe: Attribute.Relation<'api::sub-tribe.sub-tribe', 'oneToOne', 'api::tribe.tribe'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::sub-tribe.sub-tribe',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::sub-tribe.sub-tribe', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::sub-tribe.sub-tribe',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::sub-tribe.sub-tribe', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1208,34 +906,14 @@ export interface ApiTribeTribe extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    sub_tribe: Attribute.Relation<
-      'api::tribe.tribe',
-      'oneToOne',
-      'api::sub-tribe.sub-tribe'
-    >;
-    candidates: Attribute.Relation<
-      'api::tribe.tribe',
-      'oneToMany',
-      'api::candidate.candidate'
-    >;
-    voters: Attribute.Relation<
-      'api::tribe.tribe',
-      'oneToMany',
-      'api::voter.voter'
-    >;
+    sub_tribe: Attribute.Relation<'api::tribe.tribe', 'oneToOne', 'api::sub-tribe.sub-tribe'>;
+    candidates: Attribute.Relation<'api::tribe.tribe', 'oneToMany', 'api::candidate.candidate'>;
+    voters: Attribute.Relation<'api::tribe.tribe', 'oneToMany', 'api::voter.voter'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::tribe.tribe',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::tribe.tribe', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::tribe.tribe',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::tribe.tribe', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1260,60 +938,28 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     mobile: Attribute.Integer;
     familyName: Attribute.String;
     gender: Attribute.Enumeration<['male', 'female']>;
-    sector: Attribute.Relation<
-      'api::voter.voter',
-      'manyToOne',
-      'api::sector.sector'
-    >;
-    school: Attribute.Relation<
-      'api::voter.voter',
-      'manyToOne',
-      'api::school.school'
-    >;
+    sector: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::sector.sector'>;
+    school: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::school.school'>;
     status: Attribute.Enumeration<['Allowed', 'Stopped', 'NotAllowed']>;
     registrationNum: Attribute.BigInteger & Attribute.Unique;
-    tribe: Attribute.Relation<
-      'api::voter.voter',
-      'manyToOne',
-      'api::tribe.tribe'
-    >;
-    committee: Attribute.Relation<
-      'api::voter.voter',
-      'manyToOne',
-      'api::committee.committee'
-    >;
+    tribe: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::tribe.tribe'>;
+    committee: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::committee.committee'>;
     city: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::city.city'>;
     name1: Attribute.String;
     name2: Attribute.String;
     name3: Attribute.String;
     name4: Attribute.String;
     letters: Attribute.String;
-    address: Attribute.Relation<
-      'api::voter.voter',
-      'manyToOne',
-      'api::address.address'
-    >;
+    address: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::address.address'>;
     isGuaranteed: Attribute.Boolean & Attribute.DefaultTo<false>;
     age: Attribute.String;
-    candidate: Attribute.Relation<
-      'api::voter.voter',
-      'manyToOne',
-      'api::candidate.candidate'
-    >;
+    candidate: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::candidate.candidate'>;
     guaranteedCandidateId: Attribute.Integer & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::voter.voter',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::voter.voter', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::voter.voter',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::voter.voter', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
