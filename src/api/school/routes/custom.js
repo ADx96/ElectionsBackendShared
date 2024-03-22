@@ -3,7 +3,7 @@ module.exports = {
     {
       method: 'GET',
       path: '/schools/total-schools',
-      handler: 'voter.getTotalSchools',
+      handler: 'school.getTotalSchools',
     },
   ],
 };
