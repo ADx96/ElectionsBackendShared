@@ -617,7 +617,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -773,6 +772,7 @@ export interface ApiCommitteeCommittee extends Schema.CollectionType {
     number: Attribute.Integer;
     city: Attribute.Relation<'api::committee.committee', 'manyToOne', 'api::city.city'>;
     school: Attribute.Relation<'api::committee.committee', 'manyToOne', 'api::school.school'>;
+    gender: Attribute.Enumeration<['male', 'female']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::committee.committee', 'oneToOne', 'admin::user'> &
