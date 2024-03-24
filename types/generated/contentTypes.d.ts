@@ -773,6 +773,7 @@ export interface ApiCommitteeCommittee extends Schema.CollectionType {
     city: Attribute.Relation<'api::committee.committee', 'manyToOne', 'api::city.city'>;
     school: Attribute.Relation<'api::committee.committee', 'manyToOne', 'api::school.school'>;
     gender: Attribute.Enumeration<['male', 'female']>;
+    letters: Attribute.Relation<'api::committee.committee', 'oneToMany', 'api::letter.letter'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::committee.committee', 'oneToOne', 'admin::user'> &
@@ -796,6 +797,8 @@ export interface ApiLetterLetter extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     school: Attribute.Relation<'api::letter.letter', 'manyToOne', 'api::school.school'>;
+    committee: Attribute.Relation<'api::letter.letter', 'manyToOne', 'api::committee.committee'>;
+    voters: Attribute.Relation<'api::letter.letter', 'oneToMany', 'api::voter.voter'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::letter.letter', 'oneToOne', 'admin::user'> &
@@ -949,12 +952,12 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     name2: Attribute.String;
     name3: Attribute.String;
     name4: Attribute.String;
-    letters: Attribute.String;
     address: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::address.address'>;
     isGuaranteed: Attribute.Boolean & Attribute.DefaultTo<false>;
     age: Attribute.String;
     candidate: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::candidate.candidate'>;
     guaranteedCandidateId: Attribute.Integer & Attribute.Unique;
+    letter: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::letter.letter'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::voter.voter', 'oneToOne', 'admin::user'> &

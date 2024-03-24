@@ -20,6 +20,18 @@
       "relation": "manyToOne",
       "target": "api::school.school",
       "inversedBy": "letters"
+    },
+    "committee": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::committee.committee",
+      "inversedBy": "letters"
+    },
+    "voters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::voter.voter",
+      "mappedBy": "letter"
     }
   }
 }

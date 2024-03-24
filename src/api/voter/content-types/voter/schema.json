@@ -96,9 +96,6 @@
     "name4": {
       "type": "string"
     },
-    "letters": {
-      "type": "string"
-    },
     "address": {
       "type": "relation",
       "relation": "manyToOne",
@@ -121,6 +118,12 @@
     "guaranteedCandidateId": {
       "type": "integer",
       "unique": true
+    },
+    "letter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::letter.letter",
+      "inversedBy": "voters"
     }
   }
 }

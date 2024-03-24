@@ -55,6 +55,12 @@
         "male",
         "female"
       ]
+    },
+    "letters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::letter.letter",
+      "mappedBy": "committee"
     }
   }
 }
