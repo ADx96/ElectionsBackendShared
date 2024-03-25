@@ -851,7 +851,7 @@ export interface ApiSectorSector extends Schema.CollectionType {
   attributes: {
     name: Attribute.Enumeration<
       [
-        '\u0627\u0644\u0622\u0648\u0644\u0649',
+        '\u0627\u0644\u0623\u0648\u0644\u0649',
         '\u0627\u0644\u062B\u0627\u0646\u064A\u0629',
         '\u0627\u0644\u062B\u0627\u0644\u062B\u0629',
         '\u0627\u0644\u0631\u0627\u0628\u0639\u0629',
