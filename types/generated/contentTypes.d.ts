@@ -959,6 +959,7 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     guaranteedCandidateId: Attribute.Integer & Attribute.Unique;
     letter: Attribute.String;
     scheduleName: Attribute.String;
+    sectorId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::voter.voter', 'oneToOne', 'admin::user'> &
