@@ -13,7 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "text"
+      "type": "string"
     },
     "nationalityNumber": {
       "type": "biginteger"
@@ -60,7 +60,8 @@
         "Allowed",
         "Stopped",
         "NotAllowed"
-      ]
+      ],
+      "default": "Allowed"
     },
     "registrationNum": {
       "type": "biginteger",

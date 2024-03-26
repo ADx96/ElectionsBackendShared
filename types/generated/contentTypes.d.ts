@@ -933,7 +933,7 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    name: Attribute.Text;
+    name: Attribute.String;
     nationalityNumber: Attribute.BigInteger;
     isVoted: Attribute.Boolean & Attribute.DefaultTo<false>;
     isAllowed: Attribute.Boolean & Attribute.DefaultTo<true>;
@@ -943,7 +943,8 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     gender: Attribute.Enumeration<['male', 'female']>;
     sector: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::sector.sector'>;
     school: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::school.school'>;
-    status: Attribute.Enumeration<['Allowed', 'Stopped', 'NotAllowed']>;
+    status: Attribute.Enumeration<['Allowed', 'Stopped', 'NotAllowed']> &
+      Attribute.DefaultTo<'Allowed'>;
     registrationNum: Attribute.BigInteger & Attribute.Unique;
     tribe: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::tribe.tribe'>;
     committee: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::committee.committee'>;
