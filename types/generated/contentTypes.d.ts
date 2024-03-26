@@ -798,7 +798,6 @@ export interface ApiLetterLetter extends Schema.CollectionType {
     name: Attribute.String;
     school: Attribute.Relation<'api::letter.letter', 'manyToOne', 'api::school.school'>;
     committee: Attribute.Relation<'api::letter.letter', 'manyToOne', 'api::committee.committee'>;
-    voters: Attribute.Relation<'api::letter.letter', 'oneToMany', 'api::voter.voter'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::letter.letter', 'oneToOne', 'admin::user'> &
@@ -958,7 +957,8 @@ export interface ApiVoterVoter extends Schema.CollectionType {
     age: Attribute.String;
     candidate: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::candidate.candidate'>;
     guaranteedCandidateId: Attribute.Integer & Attribute.Unique;
-    letter: Attribute.Relation<'api::voter.voter', 'manyToOne', 'api::letter.letter'>;
+    letter: Attribute.String;
+    scheduleName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::voter.voter', 'oneToOne', 'admin::user'> &

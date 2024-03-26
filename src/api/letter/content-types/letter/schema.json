@@ -26,12 +26,6 @@
       "relation": "manyToOne",
       "target": "api::committee.committee",
       "inversedBy": "letters"
-    },
-    "voters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::voter.voter",
-      "mappedBy": "letter"
     }
   }
 }

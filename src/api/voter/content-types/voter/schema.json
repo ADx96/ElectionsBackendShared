@@ -121,10 +121,10 @@
       "unique": true
     },
     "letter": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::letter.letter",
-      "inversedBy": "voters"
+      "type": "string"
+    },
+    "scheduleName": {
+      "type": "string"
     }
   }
 }
