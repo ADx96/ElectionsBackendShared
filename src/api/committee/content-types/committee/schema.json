@@ -64,6 +64,12 @@
     },
     "sectorId": {
       "type": "integer"
+    },
+    "sector": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sector.sector",
+      "inversedBy": "committees"
     }
   }
 }

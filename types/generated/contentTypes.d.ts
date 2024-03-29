@@ -776,6 +776,7 @@ export interface ApiCommitteeCommittee extends Schema.CollectionType {
     gender: Attribute.Enumeration<['male', 'female']>;
     letters: Attribute.Relation<'api::committee.committee', 'oneToMany', 'api::letter.letter'>;
     sectorId: Attribute.Integer;
+    sector: Attribute.Relation<'api::committee.committee', 'manyToOne', 'api::sector.sector'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::committee.committee', 'oneToOne', 'admin::user'> &
@@ -867,6 +868,7 @@ export interface ApiSectorSector extends Schema.CollectionType {
     cities: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::city.city'>;
     candidates: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::candidate.candidate'>;
     schools: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::school.school'>;
+    committees: Attribute.Relation<'api::sector.sector', 'oneToMany', 'api::committee.committee'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::sector.sector', 'oneToOne', 'admin::user'> &
