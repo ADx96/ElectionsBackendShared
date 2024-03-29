@@ -50,6 +50,9 @@
       "relation": "oneToMany",
       "target": "api::committee.committee",
       "mappedBy": "city"
+    },
+    "schooldId": {
+      "type": "integer"
     }
   }
 }

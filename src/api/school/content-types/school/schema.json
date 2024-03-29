@@ -57,6 +57,9 @@
       "relation": "manyToOne",
       "target": "api::sector.sector",
       "inversedBy": "schools"
+    },
+    "cityId": {
+      "type": "integer"
     }
   }
 }

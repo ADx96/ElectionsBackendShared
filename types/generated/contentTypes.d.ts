@@ -742,6 +742,7 @@ export interface ApiCityCity extends Schema.CollectionType {
     address: Attribute.Relation<'api::city.city', 'oneToOne', 'api::address.address'>;
     school: Attribute.Relation<'api::city.city', 'manyToOne', 'api::school.school'>;
     committees: Attribute.Relation<'api::city.city', 'oneToMany', 'api::committee.committee'>;
+    schooldId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> & Attribute.Private;
@@ -829,6 +830,7 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
     gender: Attribute.Enumeration<['male', 'female']>;
     committees: Attribute.Relation<'api::school.school', 'oneToMany', 'api::committee.committee'>;
     sector: Attribute.Relation<'api::school.school', 'manyToOne', 'api::sector.sector'>;
+    cityId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::school.school', 'oneToOne', 'admin::user'> &
