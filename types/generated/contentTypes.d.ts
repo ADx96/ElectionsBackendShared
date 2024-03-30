@@ -700,18 +700,18 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
     mobile: Attribute.Integer;
     familyName: Attribute.String;
     sector: Attribute.Relation<'api::candidate.candidate', 'manyToOne', 'api::sector.sector'>;
-    city: Attribute.Relation<'api::candidate.candidate', 'manyToOne', 'api::city.city'>;
+    cities: Attribute.Relation<'api::candidate.candidate', 'manyToMany', 'api::city.city'>;
     tribe: Attribute.Relation<'api::candidate.candidate', 'manyToOne', 'api::tribe.tribe'>;
-    committee: Attribute.Relation<
+    committees: Attribute.Relation<
       'api::candidate.candidate',
-      'manyToOne',
+      'manyToMany',
       'api::committee.committee'
     >;
     name1: Attribute.String;
     name2: Attribute.String;
     name3: Attribute.String;
     name4: Attribute.String;
-    schools: Attribute.Relation<'api::candidate.candidate', 'oneToMany', 'api::school.school'>;
+    schools: Attribute.Relation<'api::candidate.candidate', 'manyToMany', 'api::school.school'>;
     registrationNum: Attribute.BigInteger & Attribute.Unique;
     voters: Attribute.Relation<'api::candidate.candidate', 'oneToMany', 'api::voter.voter'>;
     createdAt: Attribute.DateTime;
@@ -736,13 +736,13 @@ export interface ApiCityCity extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    candidates: Attribute.Relation<'api::city.city', 'oneToMany', 'api::candidate.candidate'>;
     sector: Attribute.Relation<'api::city.city', 'manyToOne', 'api::sector.sector'>;
     voters: Attribute.Relation<'api::city.city', 'oneToMany', 'api::voter.voter'>;
     address: Attribute.Relation<'api::city.city', 'oneToOne', 'api::address.address'>;
-    school: Attribute.Relation<'api::city.city', 'manyToOne', 'api::school.school'>;
     committees: Attribute.Relation<'api::city.city', 'oneToMany', 'api::committee.committee'>;
     schooldId: Attribute.Integer;
+    schools: Attribute.Relation<'api::city.city', 'manyToMany', 'api::school.school'>;
+    candidates: Attribute.Relation<'api::city.city', 'manyToMany', 'api::candidate.candidate'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> & Attribute.Private;
@@ -763,11 +763,6 @@ export interface ApiCommitteeCommittee extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    candidates: Attribute.Relation<
-      'api::committee.committee',
-      'oneToMany',
-      'api::candidate.candidate'
-    >;
     voters: Attribute.Relation<'api::committee.committee', 'oneToMany', 'api::voter.voter'>;
     type: Attribute.Enumeration<['main', 'sub']>;
     number: Attribute.Integer;
@@ -777,6 +772,11 @@ export interface ApiCommitteeCommittee extends Schema.CollectionType {
     letters: Attribute.Relation<'api::committee.committee', 'oneToMany', 'api::letter.letter'>;
     sectorId: Attribute.Integer;
     sector: Attribute.Relation<'api::committee.committee', 'manyToOne', 'api::sector.sector'>;
+    candidates: Attribute.Relation<
+      'api::committee.committee',
+      'manyToMany',
+      'api::candidate.candidate'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::committee.committee', 'oneToOne', 'admin::user'> &
@@ -824,13 +824,13 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    candidate: Attribute.Relation<'api::school.school', 'manyToOne', 'api::candidate.candidate'>;
     voters: Attribute.Relation<'api::school.school', 'oneToMany', 'api::voter.voter'>;
     letters: Attribute.Relation<'api::school.school', 'oneToMany', 'api::letter.letter'>;
-    cities: Attribute.Relation<'api::school.school', 'oneToMany', 'api::city.city'>;
+    cities: Attribute.Relation<'api::school.school', 'manyToMany', 'api::city.city'>;
     gender: Attribute.Enumeration<['male', 'female']>;
     committees: Attribute.Relation<'api::school.school', 'oneToMany', 'api::committee.committee'>;
     sector: Attribute.Relation<'api::school.school', 'manyToOne', 'api::sector.sector'>;
+    candidates: Attribute.Relation<'api::school.school', 'manyToMany', 'api::candidate.candidate'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::school.school', 'oneToOne', 'admin::user'> &

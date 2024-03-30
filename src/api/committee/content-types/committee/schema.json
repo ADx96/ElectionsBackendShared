@@ -15,12 +15,6 @@
     "name": {
       "type": "string"
     },
-    "candidates": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::candidate.candidate",
-      "mappedBy": "committee"
-    },
     "voters": {
       "type": "relation",
       "relation": "oneToMany",
@@ -70,6 +64,12 @@
       "relation": "manyToOne",
       "target": "api::sector.sector",
       "inversedBy": "committees"
+    },
+    "candidates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::candidate.candidate",
+      "mappedBy": "committees"
     }
   }
 }

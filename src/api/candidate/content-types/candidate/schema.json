@@ -46,9 +46,9 @@
       "target": "api::sector.sector",
       "inversedBy": "candidates"
     },
-    "city": {
+    "cities": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::city.city",
       "inversedBy": "candidates"
     },
@@ -58,9 +58,9 @@
       "target": "api::tribe.tribe",
       "inversedBy": "candidates"
     },
-    "committee": {
+    "committees": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::committee.committee",
       "inversedBy": "candidates"
     },
@@ -78,9 +78,9 @@
     },
     "schools": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::school.school",
-      "mappedBy": "candidate"
+      "mappedBy": "candidates"
     },
     "registrationNum": {
       "type": "biginteger",

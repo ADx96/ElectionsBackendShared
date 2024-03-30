@@ -15,12 +15,6 @@
     "name": {
       "type": "string"
     },
-    "candidate": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::candidate.candidate",
-      "inversedBy": "schools"
-    },
     "voters": {
       "type": "relation",
       "relation": "oneToMany",
@@ -35,9 +29,9 @@
     },
     "cities": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::city.city",
-      "mappedBy": "school"
+      "mappedBy": "schools"
     },
     "gender": {
       "type": "enumeration",
@@ -56,6 +50,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::sector.sector",
+      "inversedBy": "schools"
+    },
+    "candidates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::candidate.candidate",
       "inversedBy": "schools"
     }
   }
