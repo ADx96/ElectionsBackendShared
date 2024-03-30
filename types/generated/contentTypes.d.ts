@@ -831,7 +831,6 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
     gender: Attribute.Enumeration<['male', 'female']>;
     committees: Attribute.Relation<'api::school.school', 'oneToMany', 'api::committee.committee'>;
     sector: Attribute.Relation<'api::school.school', 'manyToOne', 'api::sector.sector'>;
-    cityId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::school.school', 'oneToOne', 'admin::user'> &
