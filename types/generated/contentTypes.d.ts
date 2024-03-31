@@ -714,6 +714,7 @@ export interface ApiCandidateCandidate extends Schema.CollectionType {
     schools: Attribute.Relation<'api::candidate.candidate', 'manyToMany', 'api::school.school'>;
     registrationNum: Attribute.BigInteger & Attribute.Unique;
     voters: Attribute.Relation<'api::candidate.candidate', 'oneToMany', 'api::voter.voter'>;
+    letter: Attribute.Relation<'api::candidate.candidate', 'manyToOne', 'api::letter.letter'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::candidate.candidate', 'oneToOne', 'admin::user'> &
@@ -802,6 +803,7 @@ export interface ApiLetterLetter extends Schema.CollectionType {
     school: Attribute.Relation<'api::letter.letter', 'manyToOne', 'api::school.school'>;
     committee: Attribute.Relation<'api::letter.letter', 'manyToOne', 'api::committee.committee'>;
     voters: Attribute.Relation<'api::letter.letter', 'oneToMany', 'api::voter.voter'>;
+    candidates: Attribute.Relation<'api::letter.letter', 'oneToMany', 'api::candidate.candidate'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::letter.letter', 'oneToOne', 'admin::user'> &

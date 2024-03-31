@@ -91,6 +91,12 @@
       "relation": "oneToMany",
       "target": "api::voter.voter",
       "mappedBy": "candidate"
+    },
+    "letter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::letter.letter",
+      "inversedBy": "candidates"
     }
   }
 }
