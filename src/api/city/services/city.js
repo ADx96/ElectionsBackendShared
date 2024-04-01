@@ -8,7 +8,12 @@ const { createCoreService } = require('@strapi/strapi').factories;
 
 module.exports = createCoreService('api::city.city', ({ strapi }) => ({
   async totalCityService(query) {
-    const findCities = await strapi.entityService.findMany('api::city.city', query);
-    return findCities.length;
+    try {
+      const findCities = await strapi.entityService.count('api::city.city', query);
+      return findCities;
+    } catch (e) {
+      console.log(e);
+      return { message: 'Error' };
+    }
   },
 }));

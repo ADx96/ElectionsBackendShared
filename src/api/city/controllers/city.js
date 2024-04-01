@@ -8,8 +8,8 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::city.city', ({ strapi }) => ({
   async getTotalCities(ctx) {
     const query = ctx.query;
-
     const result = await strapi.service('api::city.city').totalCityService(query);
-    ctx.body = { total: result };
+    ctx.status = !!result?.message ? 400 : 200;
+    ctx.body = !!result?.message ? result : { total: result };
   },
 }));
