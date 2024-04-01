@@ -11,6 +11,6 @@ module.exports = createCoreController('api::voter.voter', ({ strapi }) => ({
     const query = ctx.query;
     const result = await strapi.service('api::voter.voter').totalVotersService(query);
     ctx.status = !!result?.message ? 400 : 200;
-    ctx.body = !!result?.message ? { total: result } : result;
+    ctx.body = !!result?.message ? result : { total: result };
   },
 }));
